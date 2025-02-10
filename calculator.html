@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mserio</title>
+
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      #calculator {
+        background-color:burlywood;
+        box-shadow: 0 4px 8px rgba(50, 50, 255, 1);
+        padding: 0;
+        text-align: center;
+      }
+
+      input[type="button"] {
+        height: 50px;
+        width: 50px;
+        font-size: 1.5em;
+        margin: 5px;
+        border: none;
+        cursor: pointer;
+        outline: none; 
+        background-color: palevioletred;
+        border-radius: 50%;
+        
+      }
+
+      input[type="text"] {
+        width: 97%;
+        height: 50px;
+        font-size: 2em;
+        text-align: right;
+        border: none;
+        outline: none;
+        padding: 5px; 
+        background-color: palevioletred;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="calculator">
+      <input type="text" id="result" readonly /><br />
+
+      <input type="button" value="7" onclick="appendNumber('7')" />
+
+      <input type="button" value="8" onclick="appendNumber('8')" />
+
+      <input type="button" value="9" onclick="appendNumber('9')" />
+
+      <input type="button" value="/" onclick="appendOperator('/')" /><br />
+
+      <input type="button" value="4" onclick="appendNumber('4')" />
+
+      <input type="button" value="5" onclick="appendNumber('5')" />
+
+      <input type="button" value="6" onclick="appendNumber('6')" />
+
+      <input type="button" value="*" onclick="appendNumber('*')" /><br />
+
+      <input type="button" value="3" onclick="appendNumber('3')" />
+
+      <input type="button" value="2" onclick="appendNumber('2')" />
+
+      <input type="button" value="1" onclick="appendNumber('1')" />
+
+      <input type="button" value="-" onclick="appendOperator('-')" /><br />
+
+      <input type="button" value="0" onclick="appendNumber('0')" />
+
+      <input type="button" value="." onclick="appendNumber('.')" />
+
+      <input type="button" value="=" onclick="calculate()"/>
+
+      <input type="button" value="+" onclick="appendOperator('+')" /><br />
+
+      <input type="button" value="C" onclick="clearInput()" />
+    </div>
+    <script>
+      
+      
+
+      
+      function appendNumber(num) {
+    document.getElementById("result").value += num;
+}
+
+function appendOperator(operator) {
+    let lastChar = document.getElementById("result").value.slice(-1);
+    if (["+", "-", "/", "*"].includes(lastChar)) {
+        document.getElementById("result").value =
+            document.getElementById("result").value.slice(0, -1) + operator;
+    } else {
+        document.getElementById("result").value += operator;
+    }
+}
+
+function calculate() {
+    const expression = document.getElementById("result").value;
+    if (expression) {
+        try {
+            const result = eval(expression);
+            document.getElementById("result").value = result;
+        } catch (error) {
+            document.getElementById("result").value = "error";
+        }
+    }
+}
+
+function clearInput() {
+    document.getElementById("result").value = "";
+}
+
+    
+                
+
+
+
+
+
+    </script>
+  </body> 
+  <script src="script.js"></script>
+
+
+</html>
